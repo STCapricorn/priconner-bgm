@@ -108,7 +108,10 @@ def decompress_awb(awb_path, out_dir, index = 1):
             names = b' '.join(line[2:]).split(b'; ')
             break
     
-    out_name = names[0] + '.wav'
+    if names.__len__() != 0:
+        out_name = str(names[0])[2:-1] + '.wav'
+    else:
+        return
 
     loop_arg = '-F'
     loops = DEFAULT_LOOPS
