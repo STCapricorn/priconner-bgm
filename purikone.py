@@ -70,7 +70,7 @@ def copy_db_files(files, src_dir, dst_dir):
 
 def execute_get_words(*args):
     output = subprocess.check_output(args)
-    return [line.split(' ') for line in output.split(os.linesep)]
+    return [line.split(b' ') for line in bytes.splitlines(output)]
 
 
 def process_awb(awb):
@@ -83,7 +83,7 @@ def process_awb(awb):
 
     stream_count = 1
     for line in lines:
-        if len(line) > 2 and line[0].startswith('stream') and line[1].startswith('count'):
+        if len(line) > 2 and line[0].startswith(b'stream') and line[1].startswith(b'count'):
             stream_count = int(line[2])
             break
 
@@ -104,8 +104,8 @@ def decompress_awb(awb_path, out_dir, index = 1):
 
     names = []
     for line in lines:
-        if len(line) > 2 and line[0].startswith('stream') and line[1].startswith('name'):
-            names = ' '.join(line[2:]).split('; ')
+        if len(line) > 1 and line[0].startswith(b'stream') and line[1].startswith(b'name'):
+            names = b' '.join(line[2:]).split(b'; ')
             break
     
     out_name = names[0] + '.wav'
