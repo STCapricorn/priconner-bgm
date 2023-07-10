@@ -1,7 +1,7 @@
 import os, shutil, hashlib, sqlite3, subprocess, struct
 
 
-USER_NAME = 'turut'
+USER_NAME = 'caps'
 DATA_DIR = 'c:/Users/{0}/AppData/LocalLow/Cygames/PrincessConnectReDive'.format(USER_NAME)
 CURRENT_DIR = os.path.dirname(os.path.realpath(__file__))
 MANIFEST_FILENAME = 'manifest.db'
